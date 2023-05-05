@@ -27,7 +27,7 @@ const Users = () => {
 
     const getAllQualities = (mas) => {
         let str = mas.reduce((str, quality) => {
-            return <>{str}<span className={getBadgeClasses(quality.color)}>{quality.name}</span></>
+            return <>{str}<span key={quality._id} className={getBadgeClasses(quality.color)}>{quality.name}</span></>
         }, '')
         return str
     }
@@ -39,12 +39,12 @@ const Users = () => {
     const renderRows = () => {
         return users.length !== 0 ? users.map(user => (
             <tr key={user._id}>
-                <th scope="row">{user.name}</th>
-                <th scope="row">{getAllQualities(user.qualities)}</th>
-                <th scope="row">{user.profession.name}</th>
-                <th scope="row">{user.completedMeetings}</th>
-                <th scope="row">{user.rate}/5</th>
-                <th scope="row"><button className="btn btn-danger m-2" onClick={() => handleRemoveUser(user._id)}>Удалить</button></th>
+                <td>{user.name}</td>
+                <td>{getAllQualities(user.qualities)}</td>
+                <td>{user.profession.name}</td>
+                <td>{user.completedMeetings}</td>
+                <td>{user.rate}/5</td>
+                <td><button className="btn btn-danger m-2" onClick={() => handleRemoveUser(user._id)}>Удалить</button></td>
             </tr>
         )) : ""
     }
